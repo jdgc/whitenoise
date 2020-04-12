@@ -80,9 +80,7 @@ function toggleSource(source) {
 const playButton = document.querySelector('button')
 function playOrPauseAudio() {
   // check if context is suspended (autoplay policy)
-  if (audioContext.state === 'suspended') {
-    audioContext.resume();
-  }
+  audioContext.resume();
 
   // play or pause track depending on state
   if (playButton.dataset.playing === 'false') {
