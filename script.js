@@ -47,7 +47,7 @@ function renderFrame() {
 }
 // end visualization
 
-// toggle source
+// toggle audio and selected icon 
 function toggleSource(source) {
   let oldIcon, newIcon;
 
@@ -96,6 +96,7 @@ function playOrPauseAudio() {
   }
 };
 
+// loop
 audioElement.addEventListener('ended', () => {
   audioElement.play();
   playButton.dataset.playing = 'true'
@@ -106,7 +107,3 @@ const volumeControl = document.querySelector('#volume')
 volumeControl.addEventListener('input', function() {
   gainNode.gain.value = this.value
 }, false)
-
-
-
-
