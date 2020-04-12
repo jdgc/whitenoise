@@ -1,0 +1,43 @@
+body {
+  background-color: #000000;
+}
+
+.icons {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.material-icons {
+  font-size: 3em !important;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.play-button {
+  width: 15%;
+  border-radius: 4px;
+  align-self: center;
+  margin-bottom: 25px;
+  border: none;
+  background-color: #121212;
+}
+
+.play-button i {
+  color: #FFFFFF;
+}
+
+.controls {
+  width: 25%;
+  text-align: center;
+  align-self: center;
+  background-color: #121212;
+  border-radius: 4px;
+}
+
+#volume {
+  padding: 10px;
+}

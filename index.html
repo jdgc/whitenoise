@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
   </head>
@@ -13,10 +14,13 @@
     <div class="player">
       <audio src="temp.mp3"></audio>
 
-      <button class=""data-playing="false" role="switch" aria-checked="false">
-        <span>Play/Pause</span>
+      <button class="play-button" data-playing="false" role="switch" aria-checked="false">
+        <i id="button-icon" class="material-icons">play_arrow</i>
       </button>
-      <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
+
+      <div class="controls">
+        <input class="volume-slider" type="range" id="volume" min="0" max="2" value="1" step="0.01">
+      </div>
     </div>
   </body>
 </html>
@@ -45,9 +49,11 @@
       if (this.dataset.playing === 'false') {
         audioElement.play();
         this.dataset.playing = 'true'
+        playButton.firstElementChild.innerHTML = 'pause';
       } else if (this.dataset.playing == 'true') {
         audioElement.pause();
         this.dataset.playing = 'false'
+        playButton.firstElementChild.innerHTML = 'play_arrow';
       }
     }, false);
 
