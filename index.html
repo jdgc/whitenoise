@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
@@ -11,6 +12,11 @@
       <i class="material-icons">waves</i>
       <i class="material-icons">pregnant_woman</i>
     </div>
+
+    <div class="visualization">
+      <canvas id="canvas"></canvas>
+    </div>
+
     <div class="player">
       <audio src="temp.mp3"></audio>
 
@@ -21,50 +27,11 @@
       <div class="controls">
         <input class="volume-slider" type="range" id="volume" min="0" max="2" value="1" step="0.01">
       </div>
+
     </div>
+
   </body>
 </html>
 
- <script>
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext()
+<script src="script.js"></script>
 
-    const audioElement = document.querySelector('audio')
-    const track = audioContext.createMediaElementSource(audioElement)
-
-    const analyser = audioContext.createAnalyser()
-    const gainNode = audioContext.createGain()
-
-    track.connect(gainNode).connect(audioContext.destination)
-    track.loop = true;
-
-    const playButton = document.querySelector('button')
-    playButton.addEventListener('click', function() {
-      // check if context is suspended (autoplay policy)
-      if (audioContext.state === 'suspended') {
-        audioContext.resume();
-      }
-
-      // play or pause track depending on state
-      if (this.dataset.playing === 'false') {
-        audioElement.play();
-        this.dataset.playing = 'true'
-        playButton.firstElementChild.innerHTML = 'pause';
-      } else if (this.dataset.playing == 'true') {
-        audioElement.pause();
-        this.dataset.playing = 'false'
-        playButton.firstElementChild.innerHTML = 'play_arrow';
-      }
-    }, false);
-
-    audioElement.addEventListener('ended', () => {
-      audioElement.play();
-      playButton.dataset.playing = 'true'
-    })
-
-    const volumeControl = document.querySelector('#volume')
-
-    volumeControl.addEventListener('input', function() {
-      gainNode.gain.value = this.value
-    }, false)
- </script>

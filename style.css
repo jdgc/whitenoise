@@ -1,10 +1,16 @@
 body {
-  background-color: #000000;
+  background-color: rgb(245, 245, 245, 1);
+}
+
+canvas {
+  width: 100%; 
+  margin-top: 35px;
 }
 
 .icons {
+  margin-top: 35px;
   text-align: center;
-  color: #FFFFFF;
+  color: #121212;
 }
 
 .material-icons {
@@ -18,8 +24,8 @@ body {
 }
 
 .play-button {
-  width: 15%;
-  border-radius: 4px;
+  width: 55%;
+  border-radius: 6px;
   align-self: center;
   margin-bottom: 25px;
   border: none;
@@ -31,11 +37,11 @@ body {
 }
 
 .controls {
-  width: 25%;
+  width: 65%;
   text-align: center;
   align-self: center;
   background-color: #121212;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 #volume {
