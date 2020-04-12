@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="icons">
+      <i class="material-icons">waves</i>
+      <i class="material-icons">pregnant_woman</i>
+    </div>
+    <div class="player">
+      <audio src="temp.mp3"></audio>
+
+      <button class=""data-playing="false" role="switch" aria-checked="false">
+        <span>Play/Pause</span>
+      </button>
+      <input type="range" id="volume" min="0" max="2" value="1" step="0.01">
+    </div>
+  </body>
+</html>
+
+ <script>
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext()
+
+    const audioElement = document.querySelector('audio')
+    const track = audioContext.createMediaElementSource(audioElement)
+
+    const analyser = audioContext.createAnalyser()
+    const gainNode = audioContext.createGain()
+
+    track.connect(gainNode).connect(audioContext.destination)
+    track.loop = true;
+
+    const playButton = document.querySelector('button')
+    playButton.addEventListener('click', function() {
+      // check if context is suspended (autoplay policy)
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+
+      // play or pause track depending on state
+      if (this.dataset.playing === 'false') {
+        audioElement.play();
+        this.dataset.playing = 'true'
+      } else if (this.dataset.playing == 'true') {
+        audioElement.pause();
+        this.dataset.playing = 'false'
+      }
+    }, false);
+
+    audioElement.addEventListener('ended', () => {
+      audioElement.play();
+      playButton.dataset.playing = 'true'
+    })
+
+    const volumeControl = document.querySelector('#volume')
+
+    volumeControl.addEventListener('input', function() {
+      gainNode.gain.value = this.value
+    }, false)
+ </script>
