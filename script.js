@@ -78,26 +78,26 @@ function toggleSource(source) {
 
 
 const playButton = document.querySelector('button')
-playButton.addEventListener('click', function() {
+function playOrPauseAudio() {
   // check if context is suspended (autoplay policy)
   if (audioContext.state === 'suspended') {
     audioContext.resume();
   }
 
   // play or pause track depending on state
-  if (this.dataset.playing === 'false') {
+  if (playButton.dataset.playing === 'false') {
     audioElement.play();
     renderFrame();
 
-    this.dataset.playing = 'true'
+    playButton.dataset.playing = 'true'
     playButton.firstElementChild.innerHTML = 'pause';
 
-  } else if (this.dataset.playing == 'true') {
+  } else if (playButton.dataset.playing == 'true') {
     audioElement.pause();
-    this.dataset.playing = 'false'
+    playButton.dataset.playing = 'false'
     playButton.firstElementChild.innerHTML = 'play_arrow';
   }
-}, false);
+};
 
 audioElement.addEventListener('ended', () => {
   audioElement.play();
