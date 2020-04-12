@@ -47,6 +47,35 @@ function renderFrame() {
 }
 // end visualization
 
+// toggle source
+function toggleSource(source) {
+  let oldIcon, newIcon;
+
+  const playButton = document.querySelector('button')
+  audioElement.pause();
+  playButton.dataset.playing = 'false'
+  playButton.firstElementChild.innerHTML = 'play_arrow';
+
+  if (source === 'womb.mp3') {
+    oldIcon = document.querySelector('#waves')
+    newIcon = document.querySelector('#womb')
+
+    oldIcon.classList.remove("selected")
+    newIcon.classList.add("selected")
+
+    audioElement.src = source; 
+
+  } else if (source === 'temp.mp3') {
+    oldIcon = document.querySelector('#womb')
+    newIcon = document.querySelector('#waves')
+
+    oldIcon.classList.remove("selected")
+    newIcon.classList.add("selected")
+
+    audioElement.src = source;
+  }
+}
+
 
 const playButton = document.querySelector('button')
 playButton.addEventListener('click', function() {

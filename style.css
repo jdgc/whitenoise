@@ -15,6 +15,11 @@ canvas {
 
 .material-icons {
   font-size: 3em !important;
+  cursor: pointer;
+}
+
+.selected {
+  border: 2px solid black;
 }
 
 .player {
