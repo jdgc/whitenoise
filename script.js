@@ -10,8 +10,9 @@ const gainNode = audioContext.createGain()
 track.connect(analyser).connect(gainNode).connect(audioContext.destination)
 track.loop = true;
 
-// powers of 2 - frequency components over time
-analyser.fftSize = 16384;
+// powers of 2 - frequency components over time used in FFT operation
+// to retrieve frequency domain data
+analyser.fftSize = 8192;
 const bufferLength = analyser.frequencyBinCount;
 
 // visualization
@@ -34,20 +35,20 @@ function renderFrame() {
   analyser.getByteFrequencyData(dataArray);
 
   canvasContext.fillStyle = "rgb(245, 245, 245, 1)" // clear canvas before rendering bars
-  canvasContext.fillRect(0, 0, WIDTH, HEIGHT) // fade effect, set opacity to 1 for sharper rendering
+  canvasContext.fillRect(0, 0, WIDTH, HEIGHT) // fade effect, set opaeity to 1 for sharper rendering
 
-  let bars = 118;
+  let bars = 200;
 
   for (let i = 0; i < bars; i++) {
-    barHeight = (dataArray[i] + 2.5)
+    barHeight = (dataArray[i] - 20)
     canvasContext.fillStyle = '#121212'
     canvasContext.fillRect(x, (HEIGHT - barHeight), barWidth, barHeight)
-    x += barWidth + 10
+    x += barWidth + 1.5
   }
 }
 // end visualization
 
-// toggle audio and selected icon 
+// toggle audio and selected icon
 function toggleSource(source) {
   let oldIcon, newIcon;
 
@@ -63,7 +64,7 @@ function toggleSource(source) {
     oldIcon.classList.remove("selected")
     newIcon.classList.add("selected")
 
-    audioElement.src = source; 
+    audioElement.src = source;
 
   } else if (source === 'temp.mp3') {
     oldIcon = document.querySelector('#womb')

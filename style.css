@@ -3,7 +3,7 @@ body {
 }
 
 canvas {
-  width: 100%; 
+  width: 100%;
   margin-top: 35px;
 }
 
@@ -16,6 +16,7 @@ canvas {
 .material-icons {
   font-size: 3em !important;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .selected {
@@ -50,5 +51,5 @@ canvas {
 }
 
 #volume {
-  padding: 10px;
+  padding-top: 7px;
 }
